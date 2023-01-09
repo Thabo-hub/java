@@ -1,74 +1,67 @@
-abstract class Shape {
-    String color;
 
-    // these are abstract methods
-    abstract double area();
-    public abstract String toString();
 
-    // abstract class can have the constructor
-    public Shape(String color)
-    {
-        System.out.println("Shape constructor called");
-        this.color = color;
-    }
-
-    // this is a concrete method
-    public String getColor() { return color; }
-}
-class Circle extends Shape {
-    double radius;
-
-    public Circle(String color, double radius)
-    {
-
-        // calling Shape constructor
-        super(color);
-        System.out.println("Circle constructor called");
-        this.radius = radius;
-    }
-
-    @Override double area()
-    {
-        return Math.PI * Math.pow(radius, 2);
-    }
-
-    @Override public String toString()
-    {
-        return "Circle color is " + super.getColor()
-                + "and area is : " + area();
-    }
-}
-class Rectangle extends Shape {
-
-    double length;
-    double width;
-
-    public Rectangle(String color, double length,
-                     double width)
-    {
-        // calling Shape constructor
-        super(color);
-        System.out.println("Rectangle constructor called");
-        this.length = length;
-        this.width = width;
-    }
-
-    @Override double area() { return length * width; }
-
-    @Override public String toString()
-    {
-        return "Rectangle color is " + super.getColor()
-                + "and area is : " + area();
+//OOP INHERITANCE
+class Vehicle {
+    protected String brand = "Ford";        // Vehicle attribute
+    public void honk() {                    // Vehicle method
+        System.out.println("Tuut, tuut!");
     }
 }
 
-public class Test {
-    public static void main(String[] args)
-    {
-        Shape s1 = new Circle("Red", 2.2);
-        Shape s2 = new Rectangle("Yellow", 2, 4);
+class Car extends Vehicle {
+    private String modelName = "Mustang";    // Car attribute
+    public static void main(String[] args) {
 
-        System.out.println(s1.toString());
-        System.out.println(s2.toString());
+        // Create a myCar object
+        Car myCar = new Car();
+
+        // Call the honk() method (from the Vehicle class) on the myCar object
+        myCar.honk();
+
+        // Display the value of the brand attribute (from the Vehicle class) and the value of the modelName from the Car class
+        System.out.println(myCar.brand + " " + myCar.modelName);
+    }
+}
+
+//Polymorphism
+class Animal {
+    public void animalSound() {
+        System.out.println("The animal makes a sound");
+    }
+}
+
+class Pig extends Animal {
+    public void animalSound() {
+        System.out.println("The pig says: wee wee");
+    }
+}
+
+class Dog extends Animal {
+    public void animalSound() {
+        System.out.println("The dog says: bow wow");
+    }
+}
+
+//encapsulation
+
+public class Person {
+    private String name; // private = restricted access
+
+    // Getter
+    public String getName() {
+        return name;
+    }
+
+    // Setter
+    public void setName(String newName) {
+        this.name = newName;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person myObj = new Person();
+        myObj.setName("John"); // Set the value of the name variable to "John"
+        System.out.println(myObj.getName());
     }
 }
